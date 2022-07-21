@@ -1,6 +1,6 @@
 ﻿namespace Poc.GraphQL.Web.Entities;
 
-public enum CaseStatus
+public enum Status
 {
     New,
     InProgress,

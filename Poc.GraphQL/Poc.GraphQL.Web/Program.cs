@@ -1,8 +1,13 @@
+using GraphQL;
 using GraphQL.MicrosoftDI;
 using GraphQL.Server;
 using GraphQL.SystemTextJson;
 using GraphQL.Types;
+using Microsoft.EntityFrameworkCore;
 using Poc.GraphQL.Web.GraphQL;
+using Poc.GraphQL.Web.Repositories;
+using Poc.GraphQL.Web.Repositories.Abstractions;
+using Poc.GraphQL.Web.Repositories.EF;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,12 +18,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// DbContext
+builder.Services.AddDbContext<PocGraphQLContext>(options => options.UseInMemoryDatabase("PocGraphQL"));
+builder.Services.BuildServiceProvider().GetRequiredService<PocGraphQLContext>().Database.EnsureCreated();
+
+// Repositories
+builder.Services.AddScoped<IContractRepository, ContractRepository>();
+
 // GraphQL
-builder.Services  
+builder.Services
     .AddGraphQL(qlBuilder => qlBuilder
         .AddHttpMiddleware<ISchema>()
         .AddSelfActivatingSchema<PocApplicationSchema>()
-        .AddSystemTextJson());
+        .AddSystemTextJson()
+        .AddErrorInfoProvider(options => options.ExposeExceptionStackTrace = builder.Environment.IsDevelopment()));
 
 var app = builder.Build();
 
@@ -27,7 +40,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    
+
     // GraphQL client Altair
     app.UseGraphQLAltair();
 }
