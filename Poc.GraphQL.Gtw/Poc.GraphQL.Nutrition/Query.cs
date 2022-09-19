@@ -11,9 +11,9 @@ public class Query
         new() { Id = 3, Name = "Celeri"}
     };
 
-    public IEnumerable<Food> GetFood()
+    public IEnumerable<Food> AllFood()
         => _food;
 
-    public Food Plop(int id)
+    public Food FoodById(int id)
         => _food.Single(food => food.Id == id);
 }
