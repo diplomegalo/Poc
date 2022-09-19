@@ -1,0 +1,8 @@
+extend type
+
+extend type Ingredient {
+    name: String! 
+    @delegate(
+        schema: "nutrition", 
+        path: "food(id: $fields:foodId).name")
+}

@@ -10,8 +10,10 @@ builder.Services
 
 builder.Services
     .AddGraphQLServer()
-    .AddRemoteSchema(Recipes)
-    .AddRemoteSchema(Nutrition);
+    .AddRemoteSchema(Recipes, ignoreRootTypes: true)
+    .AddRemoteSchema(Nutrition, ignoreRootTypes: true)
+    .AddTypeExtensionsFromString("type Query { }")
+    .AddTypeExtensionsFromFile("./Stitching.graphql");
 
 var app = builder.Build();
 

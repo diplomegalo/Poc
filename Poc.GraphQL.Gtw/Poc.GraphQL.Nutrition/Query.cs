@@ -6,14 +6,14 @@ public class Query
 {
     private readonly IEnumerable<Food> _food = new List<Food>()
     {
-        new() { Id = 1, Name = "Carotte"},
-        new() { Id = 2, Name = "Oignon"},
-        new() { Id = 3, Name = "Celeri"}
+        new(1, "Carotte"),
+        new(2, "Oignon"),
+        new(3, "Celeri")
     };
 
-    public IEnumerable<Food> AllFood()
+    public IEnumerable<Food> Foods()
         => _food;
 
-    public Food FoodById(int id)
+    public Food Food(int id)
         => _food.Single(food => food.Id == id);
 }
