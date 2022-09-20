@@ -17,6 +17,8 @@ public class Query
         }
     };
 
-    public IEnumerable<Recipe> GetRecipes()
-        => _recipes;
+    public IEnumerable<Recipe> GetRecipes() => _recipes;
+
+    public Recipe? GetRecipe(int id)
+        => _recipes.SingleOrDefault(recipe => recipe.Id == id);
 }

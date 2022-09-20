@@ -1,0 +1,23 @@
+﻿directive @delegate(
+    "The name of the schema to which this field shall be delegated to"
+    schema: String
+    "The path on the schema where delegation points to"
+    path: String!
+) on FIELD_DEFINITION
+
+
+type Recipe {
+    name: String
+}
+
+type Query {
+
+}
+
+type Food {
+    name: String
+}
+
+type Ingredient {
+    foodId: Int
+}

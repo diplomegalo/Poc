@@ -1,8 +1,12 @@
-extend type
+extend type Query {
+    recipe(id: Int!): Recipe @delegate(schema: "recipes", path: "recipe(id: $arguments:id)")
+    recipes: [Recipe!]! @delegate(schema: "recipes")
+}
 
 extend type Ingredient {
-    name: String! 
+    name: String!
     @delegate(
-        schema: "nutrition", 
+        schema: "nutrition",
         path: "food(id: $fields:foodId).name")
 }
+
