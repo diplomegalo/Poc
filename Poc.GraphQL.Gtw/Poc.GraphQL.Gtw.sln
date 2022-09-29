@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poc.GraphQL.Recipes", "Poc.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poc.GraphQL.Menu", "Poc.GraphQL.Menu\Poc.GraphQL.Menu.csproj", "{2E0D625A-9B2F-46C6-B7D4-6AAD8B3312E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poc.GraphQL.Common", "Poc.GraphQL.Common\Poc.GraphQL.Common.csproj", "{ECE56714-2A7B-4826-AEAA-015593C40F4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{2E0D625A-9B2F-46C6-B7D4-6AAD8B3312E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E0D625A-9B2F-46C6-B7D4-6AAD8B3312E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E0D625A-9B2F-46C6-B7D4-6AAD8B3312E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECE56714-2A7B-4826-AEAA-015593C40F4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECE56714-2A7B-4826-AEAA-015593C40F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECE56714-2A7B-4826-AEAA-015593C40F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECE56714-2A7B-4826-AEAA-015593C40F4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
