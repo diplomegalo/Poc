@@ -1,20 +1,27 @@
-﻿import {useIsAuthenticated, useMsal} from "@azure/msal-react";
+﻿import {useMsal} from "@azure/msal-react";
 import {loginRequest} from "../../app/authConfig";
-import {useEffect} from "react";
+import {AuthService} from "../../services/auth.service";
+import {Link, useNavigate} from "react-router-dom";
+import React from "react";
 
 export const MicrosoftSigninButton = () => {
     const {instance} = useMsal();
-    const isAuthenticate = useIsAuthenticated();
-    
-    useEffect(() => console.log("Is Authenticated:", isAuthenticate),
-        [isAuthenticate]);
+    const navigate = useNavigate();
     
     const handleLogin = (loginType: string) => {
         if (loginType === "popup") {
             instance.loginPopup(loginRequest)
-                .then((result) => console.log(result))
+                .then((authenticationResult) => {
+                    AuthService.setAccesToken(authenticationResult.accessToken);
+                    navigate("/home");
+                })
                 .catch(e => console.error(e));
         }
     }
-    return <button onClick={() => handleLogin("popup")}>Sign in with Microsoft</button>
+    return (
+        <>
+            <Link to="/home">Home</Link>
+            <button onClick={() => handleLogin("popup")}>Sign in with Microsoft</button>
+        </>
+    );
 }

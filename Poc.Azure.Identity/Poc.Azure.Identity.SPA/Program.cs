@@ -1,16 +1,14 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+    .AddAuthentication()
+    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
 
 // Controllers
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -31,13 +29,14 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGet("/", () => "Welcome !");
-app.MapGet("/plop", [Authorize](context) =>
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.MapGet("/plop", (context) =>
 {
     var result = context.User.Identity?.IsAuthenticated ?? false
         ? "L'utilisateur est authentifié"
@@ -46,6 +45,9 @@ app.MapGet("/plop", [Authorize](context) =>
     return context.Response.WriteAsync(result);
 });
 
-app.MapControllers();
+app.MapFallbackToFile("index.html");
+
+app.UseSpa(spa =>
+    spa.UseProxyToSpaDevelopmentServer(new Uri("http://localhost:8080/")));
 
 app.Run();

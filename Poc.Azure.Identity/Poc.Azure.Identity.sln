@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poc.Azure.Identity.SPA", "Poc.Azure.Identity.SPA\Poc.Azure.Identity.SPA.csproj", "{AE4364D4-0810-4624-9470-E0FA05403862}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poc.Azure.Identity.App", "Poc.Azure.Identity.App\Poc.Azure.Identity.App.csproj", "{389EA85C-0E3F-494E-8619-5ACD55177469}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poc.Azure.Identity.Spa", "Poc.Azure.Identity.Spa\Poc.Azure.Identity.Spa.csproj", "{D9FD299C-D6C3-4D4A-A5A7-6D03C8D66F56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poc.Azure.Identity.React", "Poc.Azure.Identity.React\Poc.Azure.Identity.React.csproj", "{B421383D-E03C-483A-AC5A-2DC6C8F5CDC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,13 +18,17 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AE4364D4-0810-4624-9470-E0FA05403862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE4364D4-0810-4624-9470-E0FA05403862}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE4364D4-0810-4624-9470-E0FA05403862}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE4364D4-0810-4624-9470-E0FA05403862}.Release|Any CPU.Build.0 = Release|Any CPU
 		{389EA85C-0E3F-494E-8619-5ACD55177469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{389EA85C-0E3F-494E-8619-5ACD55177469}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{389EA85C-0E3F-494E-8619-5ACD55177469}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{389EA85C-0E3F-494E-8619-5ACD55177469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9FD299C-D6C3-4D4A-A5A7-6D03C8D66F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9FD299C-D6C3-4D4A-A5A7-6D03C8D66F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9FD299C-D6C3-4D4A-A5A7-6D03C8D66F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9FD299C-D6C3-4D4A-A5A7-6D03C8D66F56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B421383D-E03C-483A-AC5A-2DC6C8F5CDC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B421383D-E03C-483A-AC5A-2DC6C8F5CDC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B421383D-E03C-483A-AC5A-2DC6C8F5CDC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B421383D-E03C-483A-AC5A-2DC6C8F5CDC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

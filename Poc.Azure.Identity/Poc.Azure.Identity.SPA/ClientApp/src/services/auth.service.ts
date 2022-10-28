@@ -8,6 +8,13 @@ const API_URL: string = "https://localhost:7001/api/auth/";
 const TOKEN_KEY: string = "user";
 
 export class AuthService {
+    
+    static setAccesToken(accessToken: string){
+        axios.defaults.headers.common = {
+            "Authorization": `Bearer ${accessToken}`
+        };
+    }
+    
     static login(username: string, password: string): Promise<User> {
         return axios
             .post(`${API_URL}signin`, {username, password})

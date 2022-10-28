@@ -1,11 +1,10 @@
-﻿import React, {useEffect} from "react"
-import {createBrowserRouter, redirect, RouterProvider} from "react-router-dom";
+﻿import {createBrowserRouter, redirect, RouterProvider} from "react-router-dom";
 import {Root} from "./app/Root";
 import {ErrorPage} from "./Error-page";
 import {Home} from "./Home";
-import {Signup} from "./auth/Signup";
 import {MicrosoftSigninButton} from "./auth/MicrosoftSigninButton";
 import {useIsAuthenticated} from "@azure/msal-react";
+import {useEffect} from "react";
 
 const rootLoader = (isAuthenticate: boolean) => {
     if (!isAuthenticate) {
@@ -15,12 +14,16 @@ const rootLoader = (isAuthenticate: boolean) => {
 
 export const App = () => {
     // Initiate hooks
-    const isAuthenticate = useIsAuthenticated();    
+    const isAuthenticated = useIsAuthenticated();
+    
+    useEffect(() => console.log("Is authenticated:", isAuthenticated), 
+        [isAuthenticated]);
+    
     const router = createBrowserRouter([
         {
             path: "/",
             element: <Root/>,
-            loader: () => rootLoader(isAuthenticate),
+            loader: () => rootLoader(isAuthenticated),
             errorElement: <ErrorPage/>,
             children: [
                 {
@@ -32,10 +35,6 @@ export const App = () => {
         {
             path: "/signin",
             element: <MicrosoftSigninButton/>
-        },
-        {
-            path: "/signup",
-            element: <Signup/>
         }
     ], {window: window});
     return <RouterProvider router={router}/>;
