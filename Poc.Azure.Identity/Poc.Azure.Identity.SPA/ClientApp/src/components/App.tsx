@@ -7,9 +7,9 @@ import {useIsAuthenticated} from "@azure/msal-react";
 import {useEffect} from "react";
 
 const rootLoader = (isAuthenticate: boolean) => {
-    if (!isAuthenticate) {
-        return redirect("/signin");
-    }
+    // if (!isAuthenticate) {
+    //     return redirect("/signin");
+    // }
 }
 
 export const App = () => {
