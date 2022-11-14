@@ -64,6 +64,8 @@ dotnet add Poc.GraphQL.Menu package HotChocolate.AspNetCore
 dotnet add Poc.GraphQL.Menu package HotChocolate.Stitching
 ```
 
+Note that this time `HotChocolate.Stitching` package added additionally because the `Menu` service is the `Api Gateway`.
+
 ## Build the Nutrition service
 
 Open your solution: 
