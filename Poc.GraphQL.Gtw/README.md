@@ -7,7 +7,7 @@ Use the schema stitching with the [Hot Chocolate](https://chillicream.com/docs/h
 We are designing architecture with different microservices who serve a meal recipes mobile application:
 - The `Nutrition` service: manage the food and there information, for example there nutritional values.
 - The `Recipes` service: combines food reference together and describe action to complete a meal.
-- The `Menu` service: which is the `Api Gateway` combining the recipes and nutrition model together and offering a full model of data.
+- The `Menu` service: the `Api Gateway` combining the recipes and nutrition model together and offering a full model of data.
 
 ```mermaid
 graph TD;
@@ -16,14 +16,14 @@ Menu-->Recipes
 Menu-->Nutrition
 ```
 
-The `Recipes` service expose an `Ingredient` model. This `Ingredient` model refers a `Food` entity from the `Nutrition` service.
+The `Recipes` service expose an `Ingredient` entity. The `Ingredient` model refers a `Food` entity from the `Nutrition` service. Therefore the `Ingredient` entity contains only the identifier of the `Food`
 
 ```mermaid
 graph LR;
 Food-->Ingredient
 ```
 
-The objective is to retrieve, with the schema stitching technics, from the Api Gateway, an extended `Ingredient` model containing all the `Food` properties referenced.
+The objective is to retrieve, with the schema stitching technics, from the `Menu` Api Gateway, an extended `Ingredient` model containing all the `Food` properties referenced.
 
 ## Create your solution
 
@@ -82,7 +82,7 @@ dotnet add Poc.GraphQL.Menu package HotChocolate.Stitching
 
 Note that this time `HotChocolate.Stitching` package added additionally because the `Menu` service is the `Api Gateway`.
 
-At this point you can open your solution and see the three project within:
+At this point you can open your solution and see the three projects within:
 
 ```shell
 .\Poc.GraphQL.Gtw.sln
@@ -136,7 +136,7 @@ Note that this example mock the storage with an hardcoded list of food entity.
 
 In the `Program` class, 
 
-- use the `AddGraphQLSever`and the `AddQueryType<Query>` methods add the GraphQL endpoint and query to your application:
+- use the `AddGraphQLSever`and the `AddQueryType<Query>` methods to add the GraphQL endpoint and query to your application:
 
 ```csharp
 builder.Services
@@ -183,7 +183,7 @@ The image below shows you the final state of the test you should have.
 
 ### Entities
 
-At the root of the `Poc.GraphQL.Recipes` project, create a new `Entities` directory and add two new classes `Ingredient` and `Recipes` with the code below:
+At the root of the `Poc.GraphQL.Recipes` project, create a new `Entities` directory and add two new classes `Ingredient` and `Recipe` with the code below where the `FoodId` property contains the identifier reference of the `Food` entity from the `Nutrition` service:
 
 ```csharp
 namespace Poc.GraphQL.Recipes.Entities;
@@ -195,8 +195,6 @@ public record Ingredient
     public decimal Quantity { get; set; }
 }
 ```
-
-Where the `FoodId` property contains the identifier reference of `Food` from the `Nutrition` service.
 
 ```csharp
 namespace Poc.GraphQL.Recipes.Entities;
@@ -244,7 +242,7 @@ This exposes two queries :
 - Get all recipes.
 - Get recipe by `id`.
 
-Note that the list of recipes is hardcoded in the class. This list contains `Ingredient` which refer to the `Food` entity through its `FoodId` property.
+Note that the list of recipes is hardcoded in the class. This list contains `Ingredient` which refer to the `Food` entity with the value of `FoodId` property.
 
 ### Build the web api
 
