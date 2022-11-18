@@ -1,6 +1,6 @@
 ﻿namespace Poc.GraphQL.Recipes.Entities;
 
-public class Recipe
+public record Recipe
 {
     public int Id { get; set; }
     public string Name { get; set; }
